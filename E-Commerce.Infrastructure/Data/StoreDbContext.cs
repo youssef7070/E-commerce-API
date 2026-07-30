@@ -1,4 +1,5 @@
-﻿using E_Commerce.Domain.Entities.Products;
+﻿using E_Commerce.Domain.Entities.Orders;
+using E_Commerce.Domain.Entities.Products;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,11 +9,9 @@ using System.Threading.Tasks;
 
 namespace E_Commerce.Infrastructure.Data
 {
-    public class StoreDbContext(DbContextOptions<StoreDbContext> options): DbContext(options)
+    public class StoreDbContext(DbContextOptions<StoreDbContext> options) : DbContext(options)
     {
-
         #region DbSets
-
 
         public DbSet<Product> Products { get; set; }
 
@@ -20,22 +19,22 @@ namespace E_Commerce.Infrastructure.Data
 
         public DbSet<ProductBrand> ProductBrands { get; set; }
 
+        public DbSet<Order> Orders { get; set; }
 
-        #endregion 
+        public DbSet<OrderItem> OrderItems { get; set; }
 
+        public DbSet<DeliveryMethod> DeliveryMethods { get; set; }
+
+        #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(StoreDbContext).Assembly);
-
-
-
-
-
-
         }
 
+
+     
 
     }
 }

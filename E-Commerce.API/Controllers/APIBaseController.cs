@@ -1,6 +1,7 @@
 ﻿using E_Commerce.Application.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace E_Commerce.API.Controllers
 {
@@ -70,6 +71,10 @@ namespace E_Commerce.API.Controllers
 
 
         }
+
+        protected string GetEmailFromToken()
+            => User.FindFirstValue(ClaimTypes.Email)
+            ?? throw new UnauthorizedAccessException("No Email Clain Found");
 
 
     }

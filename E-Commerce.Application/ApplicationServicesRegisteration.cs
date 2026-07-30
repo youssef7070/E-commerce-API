@@ -1,5 +1,6 @@
 ﻿using E_Commerce.Application.Contracts;
 using E_Commerce.Application.Services;
+using E_Commerce.Domain.Contracts;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,17 @@ namespace E_Commerce.Application
 
            services.AddAutoMapper(typeof(ApplicationServicesRegisteration).Assembly);
 
-            services.AddScoped<IProductService, ProductService>();
+           services.AddScoped<IProductService, ProductService>();
+
+           services.AddScoped<IBasketService, BasketService>();
+
+           services.AddSingleton<ICasheService, CasheService>();
+
+           services.AddScoped<IAuthenticationService, AuthenticationService>();
+
+            services.AddScoped<IOrderService, OrderService>();
+
+            services.AddScoped<IPaymentService, PaymentService>();
 
            return services;
 

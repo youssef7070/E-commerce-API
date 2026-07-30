@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using E_Commerce.Application.DTOS.Products;
 using E_Commerce.Domain.Entities.Products;
 using Microsoft.Extensions.Options;
@@ -11,16 +11,16 @@ using System.Threading.Tasks;
 
 namespace E_Commerce.Application.Profiles
 {
-    public class PictureUrlResolver(IOptions<UrlSettings> options) : IValueResolver<Product, ProductDto, string?>
+    public class PictureUrlResolver(IOptions<UrlSettings> options) : IValueResolver<Product, ProductDto, string>
     {
 
         private readonly UrlSettings _urlSettings = options.Value;
 
-        public string? Resolve(Product source, ProductDto destination, string destMember, ResolutionContext context)
+        public string Resolve(Product source, ProductDto destination, string destMember, ResolutionContext context)
         {
             
             if(string.IsNullOrEmpty(source.PictureUrl))
-                return null;
+                return string.Empty;
 
             var baseUrl = _urlSettings.BaseUrl.TrimEnd('/');
 

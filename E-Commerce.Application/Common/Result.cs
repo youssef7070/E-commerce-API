@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -63,11 +63,11 @@ namespace E_Commerce.Application.Common
 
         }
 
-        public static Result<TValue> Ok(TValue value) => new (value);
+        public static new Result<TValue> Ok(TValue value) => new (value);
 
-        public static Result<TValue> Fail(Error error) => new (error);
+        public static new Result<TValue> Fail(Error error) => new (error);
 
-        public static Result<TValue> Fail(IReadOnlyList<Error> erros) => new (erros);
+        public static new Result<TValue> Fail(IReadOnlyList<Error> erros) => new (erros);
 
         public static implicit operator Result<TValue>(TValue value) => Ok(value);
 
